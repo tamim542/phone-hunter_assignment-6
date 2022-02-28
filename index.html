@@ -17,23 +17,35 @@
 <body>
 
     <!-------------search box-----------> 
-    <h2 class="text-center mt-5">Food</h2>
+    <h2 class="text-center text-primary mt-5">Phone Finder</h2>
     <div class="input-group mb-3 w-50 mx-auto">
-        <input id="search-input" type="text" class="form-control" placeholder="search what type of food you want" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <input id="search-input" type="text" class="form-control" placeholder="search phone name" aria-label="Recipient's username" aria-describedby="button-addon2">
         <button onclick="loadData()" class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
       </div>
-      <p id="error-show">no result found</p>
-      <!-------card create dynamicall--------->
-      <div id="card-img">
+
+      <!-----------Error Handle SearchField---------->
+      <h3 id="error-show" class="text-center text-danger">No result found</h3>
+
+
+
+       <!------------card for showing Phone details------------>
+
+       <div id="display-phone-detail" class="row align-items-center">
+
+       </div> 
+
+
+      <!-------card for search result--------->
+     <div class="cotainer">
+      <div>
+          <div id="phone-info" class="row">
+
+          </div>
 
       </div>
+    </div>
 
-<!------------card2------------>
-
-<div id="display-food-detail">
-
-</div>
-
+    <!------javascript file------->
    <script src="js/phone.js"></script> 
 </body>
 </html>
