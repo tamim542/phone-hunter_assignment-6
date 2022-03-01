@@ -18,23 +18,31 @@ const loadData=()=>{
    
 }
 
+         ///// search data
 
 const searchData=data=>{
- 
-  
+   var counter=0;
+   
   const div=document.getElementById('phone-info');
   div.textContent='';
 
-    // error show
-   // console.log(meals);
+  const div2=document.getElementById('display-phone-detail');
+  div2.textContent='';
+ 
    /////////////error handle for irrelavent search
     if(data.length==0)
     {
         document.getElementById('error-show').style.display='block';
     }else{
+      
       document.getElementById('error-show').style.display='none';
-      data.forEach(element => {
-        
+      
+        ////////array slice first 20
+
+      let data1=data.slice(0, 20);
+      
+      data1.forEach(element => {
+       
         const innerDiv=document.createElement('div');
         
       //  innerDiv.classList.add('col');
@@ -51,12 +59,16 @@ const searchData=data=>{
       </div>
 `
 div.appendChild(innerDiv);
-     });
+
+
+     })
         
     }
 
          
 }
+
+ ////////// show details phone
 
 const loadDetailPhone = slug=>{
     //console.log(slug);
@@ -68,17 +80,33 @@ const loadDetailPhone = slug=>{
 
 const displayPhoneDetail=dataPhone=>{
     //console.log(dataPhone);
+    const release='Not Found';
   const div2=document.getElementById('display-phone-detail');
   const div3=document.createElement('div');
-  div2.innerHTML='';
+  div2.textContent='';
+
+
+  if(dataPhone.data.releaseDate==''){
+    div3.innerHTML=`<div class="card col-6 mx-auto" style="width: 18rem;">
+    <img src="${dataPhone.data.image}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Model: ${dataPhone.data.name}</h5>
+      
+      <p class="card-text">Release Date: ${release}</p>
+      </div>
+      </div>`;
+  }else{
   div3.innerHTML=`<div class="card col-6 mx-auto" style="width: 18rem;">
   <img src="${dataPhone.data.image}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">${dataPhone.data.name}</h5>
-    <p class="card-text">${dataPhone.data.releaseDate}</p>
+    <h5 class="card-title">Model: ${dataPhone.data.name}</h5>
     
-  </div>
+    <p class="card-text">Release Date: ${dataPhone.data.releaseDate}</p>
+    </div>
 </div>`;
+  }
+
+ 
 
 div2.appendChild(div3);
 
