@@ -4,8 +4,18 @@ const loadData=()=>{
     //console.log(searchText);
            /////////////error handle for empty input field
     if(searchText==''){
+      //error handle clear div
+
+      const div=document.getElementById('phone-info');
+      div.textContent='';
+
+      const div2=document.getElementById('display-phone-detail');
+      div2.textContent='';
+
       document.getElementById('error-show').style.display='block';
+
     }else{
+
       document.getElementById('error-show').style.display='none';
       inputField.value=''; 
       const url=`https://openapi.programming-hero.com/api/phones?search=${searchText}`
@@ -21,7 +31,7 @@ const loadData=()=>{
          ///// search data
 
 const searchData=data=>{
-   var counter=0;
+  
    
   const div=document.getElementById('phone-info');
   div.textContent='';
@@ -45,6 +55,31 @@ const searchData=data=>{
        
         const innerDiv=document.createElement('div');
         
+        innerDiv.classList.add('col-lg-4', 'col-sm-12');
+        innerDiv.innerHTML=`
+        <div  class="card my-5 mx-3" >
+        
+        <img src="${element.image}" class="card-img-top px-2 pt-2" alt="...">
+       
+        <div class="card-body">
+          <h5 class="card-title">${element.phone_name}</h5>
+          <p class="card-text">${element.brand}</p>
+        <button class="btn btn-primary" onclick="loadDetailPhone('${element.slug}')">Details</button>
+        </div>
+      </div>`
+
+      div.appendChild(innerDiv);
+
+
+     })
+            ///////Show All Result
+            let dataLength=data.length;
+            let data2=data.slice(21,dataLength);
+     const showAllresult=document.getElementById('show-all-result').addEventListener('click',function(){
+      data2.forEach(element => {
+       
+        const innerDiv=document.createElement('div');
+        
       innerDiv.classList.add('col-lg-4', 'col-sm-12');
         innerDiv.innerHTML=`
         <div  class="card my-5 mx-3" >
@@ -62,6 +97,8 @@ div.appendChild(innerDiv);
 
 
      })
+     })
+     
         
     }
 
