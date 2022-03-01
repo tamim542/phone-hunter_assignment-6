@@ -80,7 +80,7 @@ const loadDetailPhone = slug=>{
 
 const displayPhoneDetail=dataPhone=>{
     //console.log(dataPhone);
-    const release='Not Found';
+    const release='Release Data Not Found';
   const div2=document.getElementById('display-phone-detail');
   const div3=document.createElement('div');
   div2.textContent='';
@@ -92,7 +92,26 @@ const displayPhoneDetail=dataPhone=>{
     <div class="card-body">
       <h5 class="card-title">Model: ${dataPhone.data.name}</h5>
       
-      <p class="card-text">Release Date: ${release}</p>
+      <p class="card-text text-primary">Release Date: ${release}</p>
+
+
+    <p class="card-text">Storage: ${dataPhone.data.mainFeatures.storage}</p>
+    <p class="card-text">DisplaySize: ${dataPhone.data.mainFeatures.displaySize}</p>
+    <p class="card-text">ChipSet: ${dataPhone.data.mainFeatures.chipSet}</p>
+    <p class="card-text">Memory: ${dataPhone.data.mainFeatures.memory}</p>
+
+
+    <p class="card-text">Sensor: ${dataPhone.data.mainFeatures.sensors[0]}, ${dataPhone.data.mainFeatures.sensors[1]}, ${dataPhone.data.mainFeatures.sensors[2]}, ${dataPhone.data.mainFeatures.sensors[3]}, ${dataPhone.data.mainFeatures.sensors[4]}, ${dataPhone.data.mainFeatures.sensors[5]}</p>
+    
+
+    <p class="card-text">WLAN: ${dataPhone.data.others.WLAN}</p>
+    <p class="card-text">Bluetooth: ${dataPhone.data.others.Bluetooth}</p>
+    <p class="card-text">GPS: ${dataPhone.data.others.GPS}</p>
+    <p class="card-text">NFC: ${dataPhone.data.others.NFC}</p>
+    <p class="card-text">Radio: ${dataPhone.data.others.Radio}</p>
+    <p class="card-text">USB: ${dataPhone.data.others.USB}</p>
+
+
       </div>
       </div>`;
   }else{
@@ -100,8 +119,26 @@ const displayPhoneDetail=dataPhone=>{
   <img src="${dataPhone.data.image}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Model: ${dataPhone.data.name}</h5>
+    <p class="card-text text-primary">Release Date: ${dataPhone.data.releaseDate}</p>
+
+
+    <p class="card-text">Storage: ${dataPhone.data.mainFeatures.storage}</p>
+    <p class="card-text">DisplaySize: ${dataPhone.data.mainFeatures.displaySize}</p>
+    <p class="card-text">ChipSet: ${dataPhone.data.mainFeatures.chipSet}</p>
+    <p class="card-text">Memory: ${dataPhone.data.mainFeatures.memory}</p>
+
+
+    <p class="card-text">Sensor: ${dataPhone.data.mainFeatures.sensors[0]}, ${dataPhone.data.mainFeatures.sensors[1]}, ${dataPhone.data.mainFeatures.sensors[2]}, ${dataPhone.data.mainFeatures.sensors[3]}, ${dataPhone.data.mainFeatures.sensors[4]}, ${dataPhone.data.mainFeatures.sensors[5]}</p>
     
-    <p class="card-text">Release Date: ${dataPhone.data.releaseDate}</p>
+
+    <p class="card-text">WLAN: ${dataPhone.data.others.WLAN}</p>
+    <p class="card-text">Bluetooth: ${dataPhone.data.others.Bluetooth}</p>
+    <p class="card-text">GPS: ${dataPhone.data.others.GPS}</p>
+    <p class="card-text">NFC: ${dataPhone.data.others.NFC}</p>
+    <p class="card-text">Radio: ${dataPhone.data.others.Radio}</p>
+    <p class="card-text">USB: ${dataPhone.data.others.USB}</p>
+
+
     </div>
 </div>`;
   }
