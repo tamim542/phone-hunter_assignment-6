@@ -45,16 +45,16 @@ const searchData=data=>{
        
         const innerDiv=document.createElement('div');
         
-      //  innerDiv.classList.add('col');
+      innerDiv.classList.add('col-lg-4', 'col-sm-12');
         innerDiv.innerHTML=`
-        <div  class="card  mt-4 mx-4 col-lg-4 col-sm-12" style="width: 18rem;">
+        <div  class="card my-5 mx-3" >
         
-        <img src="${element.image}" class="card-img-top" alt="...">
+        <img src="${element.image}" class="card-img-top px-2 pt-2" alt="...">
        
         <div class="card-body">
           <h5 class="card-title">${element.phone_name}</h5>
           <p class="card-text">${element.brand}</p>
-        <button onclick="loadDetailPhone('${element.slug}')">Details</button>
+        <button class="btn btn-primary" onclick="loadDetailPhone('${element.slug}')">Details</button>
         </div>
       </div>
 `
