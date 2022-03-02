@@ -1,10 +1,19 @@
+
+///////spinner add
+const toggleSpinner=displaySpin=>{
+  document.getElementById('spinner').style.display=displaySpin;
+}
+
 const loadData=()=>{
     const inputField=document.getElementById('search-input');
     const searchText=inputField.value;
-    //console.log(searchText);
-           /////////////error handle for empty input field
+    
+    toggleSpinner('block');
+  
+
+/////////////error handle for empty input field
     if(searchText==''){
-      //error handle clear div
+//error handle clear div
 
       const div=document.getElementById('phone-info');
       div.textContent='';
@@ -14,6 +23,8 @@ const loadData=()=>{
 
       document.getElementById('error-show').style.display='block';
 
+      toggleSpinner('none');
+
     }else{
 
       document.getElementById('error-show').style.display='none';
@@ -22,11 +33,12 @@ const loadData=()=>{
       fetch(url)
       .then(res=>res.json())
       .then(value=>searchData(value.data))
-     // console.log(meals.length);
+     
     }
    
    
 }
+
 
          ///// search data
 
@@ -43,6 +55,9 @@ const searchData=data=>{
     if(data.length==0)
     {
         document.getElementById('error-show').style.display='block';
+
+        toggleSpinner('none');
+
     }else{
       
       document.getElementById('error-show').style.display='none';
@@ -72,6 +87,8 @@ const searchData=data=>{
 
 
      })
+
+     toggleSpinner('none');
             ///////Show All Result
             let dataLength=data.length;
             let data2=data.slice(21,dataLength);
@@ -91,9 +108,9 @@ const searchData=data=>{
           <p class="card-text">${element.brand}</p>
         <button class="btn btn-primary" onclick="loadDetailPhone('${element.slug}')">Details</button>
         </div>
-      </div>
-`
-div.appendChild(innerDiv);
+      </div>`
+     
+      div.appendChild(innerDiv);
 
 
      })
@@ -108,7 +125,7 @@ div.appendChild(innerDiv);
  ////////// show details phone
 
 const loadDetailPhone = slug=>{
-    //console.log(slug);
+
       const url=`https://openapi.programming-hero.com/api/phone/${slug}`
       fetch(url)
       .then(res=>res.json())
@@ -116,8 +133,8 @@ const loadDetailPhone = slug=>{
 }
 
 const displayPhoneDetail=dataPhone=>{
-    //console.log(dataPhone);
-    const release='Release Data Not Found';
+    const release='Release Date Not Found';
+    const otherIfo='Other Information No Available';
   const div2=document.getElementById('display-phone-detail');
   const div3=document.createElement('div');
   div2.textContent='';
@@ -140,18 +157,18 @@ const displayPhoneDetail=dataPhone=>{
 
     <p class="card-text">Sensor: ${dataPhone.data.mainFeatures.sensors[0]}, ${dataPhone.data.mainFeatures.sensors[1]}, ${dataPhone.data.mainFeatures.sensors[2]}, ${dataPhone.data.mainFeatures.sensors[3]}, ${dataPhone.data.mainFeatures.sensors[4]}, ${dataPhone.data.mainFeatures.sensors[5]}</p>
     
+    
+    <p class="card-text"> ${'others' in dataPhone.data? `WLAN: ${dataPhone.data.others.WLAN}<br> Bluetooth: ${dataPhone.data.others.Bluetooth}<br> GPS: ${dataPhone.data.others.GPS}<br> NFC: ${dataPhone.data.others.NFC}<br> Radio: ${dataPhone.data.others.Radio}<br> USB: ${dataPhone.data.others.USB}` :`${otherIfo}`}</p>
 
-    <p class="card-text">WLAN: ${dataPhone.data.others.WLAN}</p>
-    <p class="card-text">Bluetooth: ${dataPhone.data.others.Bluetooth}</p>
-    <p class="card-text">GPS: ${dataPhone.data.others.GPS}</p>
-    <p class="card-text">NFC: ${dataPhone.data.others.NFC}</p>
-    <p class="card-text">Radio: ${dataPhone.data.others.Radio}</p>
-    <p class="card-text">USB: ${dataPhone.data.others.USB}</p>
+
+    
 
 
       </div>
       </div>`;
-  }else{
+  }
+  
+  else{
   div3.innerHTML=`<div class="card col-6 mx-auto" style="width: 18rem;">
   <img src="${dataPhone.data.image}" class="card-img-top" alt="...">
   <div class="card-body">
@@ -168,13 +185,12 @@ const displayPhoneDetail=dataPhone=>{
     <p class="card-text">Sensor: ${dataPhone.data.mainFeatures.sensors[0]}, ${dataPhone.data.mainFeatures.sensors[1]}, ${dataPhone.data.mainFeatures.sensors[2]}, ${dataPhone.data.mainFeatures.sensors[3]}, ${dataPhone.data.mainFeatures.sensors[4]}, ${dataPhone.data.mainFeatures.sensors[5]}</p>
     
 
-    <p class="card-text">WLAN: ${dataPhone.data.others.WLAN}</p>
-    <p class="card-text">Bluetooth: ${dataPhone.data.others.Bluetooth}</p>
-    <p class="card-text">GPS: ${dataPhone.data.others.GPS}</p>
-    <p class="card-text">NFC: ${dataPhone.data.others.NFC}</p>
-    <p class="card-text">Radio: ${dataPhone.data.others.Radio}</p>
-    <p class="card-text">USB: ${dataPhone.data.others.USB}</p>
+    
+   
 
+
+    <p class="card-text"> ${'others' in dataPhone.data? `WLAN: ${dataPhone.data.others.WLAN}<br> Bluetooth: ${dataPhone.data.others.Bluetooth}<br> GPS: ${dataPhone.data.others.GPS}<br> NFC: ${dataPhone.data.others.NFC}<br> Radio: ${dataPhone.data.others.Radio}<br> USB: ${dataPhone.data.others.USB}` :`${otherIfo}`}</p>
+    
 
     </div>
 </div>`;
